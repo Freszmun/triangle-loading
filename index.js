@@ -1,7 +1,13 @@
 let canvas = document.querySelector('canvas');
 ctx = canvas.getContext('2d');
-canvas.width = ctx.width = canvas.clientWidth;
-canvas.height = ctx.height = canvas.clientHeight;
+resize();
+
+function resize() {
+	canvas.width = ctx.width = canvas.clientWidth;
+	canvas.height = ctx.height = canvas.clientHeight;
+}
+
+window.onresize = resize;
 
 let particles = [],
 	particlesColor = function() {
@@ -9,10 +15,6 @@ let particles = [],
 	},
 	background = document.querySelector('.triangle-loading .background');
 
-window.onresize = function() {
-	canvas.width = ctx.width = canvas.clientWidth;
-	canvas.height = ctx.height = canvas.clientHeight;
-}
 
 setTimeout(function() {
 	particlesColor = function() {
@@ -31,12 +33,13 @@ setTimeout(function() {
 		background.style.filter = filter;
 		background.style['-webkit-filter'] = filter;
 	}, 3000);
+
+	setInterval(function() {
+		let particle = particles[Math.round(Math.random() * (particles.length - 1))];
+		particle.targetAngle = particle.angle + (-20 + Math.random() * 40);
+	}, 800);
 }, 20000);
 
-setInterval(function() {
-	let particle = particles[Math.round(Math.random() * (particles.length - 1))];
-	particle.targetAngle = particle.angle + (-20 + Math.random() * 40);
-}, 800);
 
 function render() {
 	let w = {
@@ -93,4 +96,7 @@ function render() {
 
 	requestAnimationFrame(render);
 }
-setTimeout(render, 6000);
+setTimeout(function() {
+	resize();
+	render();
+}, 6000);
