@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Triangle loading</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        <meta name="author" content="Mateusz Bilicz https://mateuszbilicz.pl/">
+        <meta name="description" content="Simple triangle + particles loading screen">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <canvas></canvas>
+        <div class="triangle-loading">
+            <svg>
+                <clipPath id="triangle-svg-clip" clipPathUnits="objectBoundingBox">
+                    <path d="M0.5,0.194 L0.853,0.9 H0.147 L0.5,0.194 M0.5,0 L0,1 H1 L0.5,0">
+                </clipPath>
+            </svg>
+            <span></span>
+            <div class="background"></div>
+        </div>
+        <script src="index.js"></script>
+    </body>
+</html>
